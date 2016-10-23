@@ -9,7 +9,7 @@ Netbeans  8.02
 JDK 1.7 ou superior.
 
 Dependências Maven até o momento
-JSP API 2.2.1-b03
+JavaEE-web-api-7.0
 
 Recursos até o momento
 Servletapi

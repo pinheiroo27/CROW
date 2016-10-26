@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crud;
+package br.edu.garanhuns.ifpe.crow.classes;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author casa01
  */
-public class Crud<T>{
+public class CrudElements<T>{
     
     private static final String TEXT="text";
     private static final String SUBMIT="submit";
@@ -57,7 +57,7 @@ public class Crud<T>{
     
     public String create(Class classBean,String method,String action){
         String m;
-        m = method.isEmpty()? Crud.POST : method;
+        m = method.isEmpty()? CrudElements.POST : method;
         
         StringBuilder sb = new StringBuilder();
         sb.append("<form ");
@@ -72,14 +72,14 @@ public class Crud<T>{
         Field[] fields = classBean.getDeclaredFields();
         for(Field f :fields){
             try {
-                sb.append(this.input(f.getName(), Crud.TEXT,"", f.getName()));
+                sb.append(this.input(f.getName(), CrudElements.TEXT,"", f.getName()));
             } catch (SecurityException | IllegalArgumentException ex) {
-                Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             sb.append("<br/>");
         }
-        sb.append(this.input("",Crud.SUBMIT,"enviar"));
+        sb.append(this.input("",CrudElements.SUBMIT,"enviar"));
         sb.append("</form>");
         
         return sb.toString();
@@ -90,7 +90,7 @@ public class Crud<T>{
         Class classBean;
         classBean = objectBean.getClass();
         String m;
-        m = method.isEmpty()? Crud.POST : method;
+        m = method.isEmpty()? CrudElements.POST : method;
         
         StringBuilder sb = new StringBuilder();
         sb.append("<form ");
@@ -108,14 +108,14 @@ public class Crud<T>{
                 Method meth = classBean.getMethod("get"+StringUtil.upperCaseFirst(f.getName()));
                 String value = String.valueOf(meth.invoke(objectBean)).equals("null")?"":String.valueOf(meth.invoke(objectBean));
                 
-                sb.append(this.input(f.getName(), Crud.TEXT,value, f.getName()));
-            } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-                Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+                sb.append(this.input(f.getName(), CrudElements.TEXT,value, f.getName()));
+            } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             sb.append("<br/>");
         }
-        sb.append(this.input("",Crud.SUBMIT,"enviar"));
+        sb.append(this.input("",CrudElements.SUBMIT,"enviar"));
         sb.append("</form>");
         
         return sb.toString();
@@ -148,8 +148,8 @@ public class Crud<T>{
                     sb.append("<td>");
                     sb.append(value);
                     sb.append("</td>");
-                } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-                    Logger.getLogger(Crud.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                    Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
                 }
                
             }
@@ -167,12 +167,6 @@ public class Crud<T>{
         sb.append("</table>");
         
         return sb.toString();
-    }
-    
-    
-    public String crud(Class classBean,String method, String action,List<T> list,List<String> atributtes){
-        return this.create(classBean,method,action)+
-               this.list(classBean, list, atributtes);
     }
    
     

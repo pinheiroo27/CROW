@@ -111,6 +111,8 @@ public class CrudElements<T>{
                 sb.append(this.input(f.getName(), CrudElements.TEXT,value, f.getName()));
             } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoSuchMethodException ex) {
+                Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             sb.append("<br/>");
@@ -149,6 +151,8 @@ public class CrudElements<T>{
                     sb.append(value);
                     sb.append("</td>");
                 } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                    Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NoSuchMethodException ex) {
                     Logger.getLogger(CrudElements.class.getName()).log(Level.SEVERE, null, ex);
                 }
                

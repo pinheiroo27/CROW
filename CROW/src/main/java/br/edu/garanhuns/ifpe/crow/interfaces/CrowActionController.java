@@ -7,6 +7,7 @@ package br.edu.garanhuns.ifpe.crow.interfaces;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -23,5 +24,7 @@ public interface CrowActionController<Bean, ID extends Serializable> {
     public void delete(Bean bean);
 
     public Bean getById(ID id);
+    
+    public List<Bean> list();
 
 }

@@ -63,7 +63,7 @@ public class BasicCrudEdit extends SimpleTagSupport{
         out.println("<script src='http://code.jquery.com/jquery-3.1.1.js'></script>"
                 + "<script>$(function(){\n"
                 + "    \n"
-                + "    $(\"[value='cadastrar']\").click(function(){\n"
+                + "    $(\"[value='Cadastrar']\").click(function(){\n"
                 + "       var fields = $(\"[name]\");\n"
                 + "    \n"
                 + "        var parametros = \"\";\n"
@@ -81,7 +81,21 @@ public class BasicCrudEdit extends SimpleTagSupport{
                 + "    \n"
                 + "    \n"
                 + "    \n"
-                + "});</script>");
+                + "    $(\"[value='Remover']\").click(function(){\n"
+                + "       var field = $(\"[name='id']\");\n"
+                + "    \n"
+                + "        var parametros = \"\";\n"
+                + "    \n"
+                + "        parametros += $(field[0]).attr(\"name\")+\":\"+$(field[0]).val()+\";\"; \n"
+                + "        console.log(parametros)"
+                + "    \n"
+                + "        $.post(\"GenericRemoveServlet\",{param:parametros},\n"
+                + "        function(data){\n"
+                + "            $(\"#mensagem\").html(data);\n"
+                + "        }); \n"
+                + "        });\n"
+                + "});</script>\n\n");
+        
 
         out.println("<p id='mensagem'></p>");
         out.println("<form>");
@@ -111,7 +125,8 @@ public class BasicCrudEdit extends SimpleTagSupport{
                 Logger.getLogger(BasicCrudEdit.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        out.print("<input type='button' value='cadastrar' />");
+        out.print("<input type='button' value='Cadastrar' />");
+        out.print("<input type='button' value='Remover' />");
         out.println("</form>");
     }
     

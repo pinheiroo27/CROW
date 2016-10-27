@@ -20,4 +20,27 @@
           <rtexprvalue>true</rtexprvalue>
       </attribute>
   </tag>
+  <tag>
+      <name>crud_edit</name>
+      <tag-class>br.edu.garanhuns.ifpe.crow.tags.BasicCrudEdit</tag-class>
+      <body-content>empty</body-content>
+      
+      <attribute>
+          <name>usedBean</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+          <name>beanInstance</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+      
+      <attribute>
+          <name>usedController</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
 </taglib>

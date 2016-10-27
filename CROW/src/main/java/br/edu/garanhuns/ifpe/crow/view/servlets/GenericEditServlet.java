@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
  * @author 1860915
  */
 
-@WebServlet(name = "GenericInsertServlet", urlPatterns = {"/GenericInsertServlet"})
-public class GenericInsertServlet extends HttpServlet {
+@WebServlet(name = "GenericEditServlet", urlPatterns = {"/GenericEditServlet"})
+public class GenericEditServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,11 +78,11 @@ public class GenericInsertServlet extends HttpServlet {
                             try {
                                 m.invoke(objectBean, p.split(":")[1]);
                             } catch (IllegalAccessException ex) {
-                                Logger.getLogger(GenericInsertServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(GenericEditServlet.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (IllegalArgumentException ex) {
-                                Logger.getLogger(GenericInsertServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(GenericEditServlet.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (InvocationTargetException ex) {
-                                Logger.getLogger(GenericInsertServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(GenericEditServlet.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     }
@@ -93,7 +93,7 @@ public class GenericInsertServlet extends HttpServlet {
         
         Method controllerMethod;
         try {
-            controllerMethod = objectController.getClass().getDeclaredMethod("create",Object.class);
+            controllerMethod = objectController.getClass().getDeclaredMethod("update",Object.class);
             
             controllerMethod.invoke(objectController, objectBean);
         } catch (NoSuchMethodException ex) {

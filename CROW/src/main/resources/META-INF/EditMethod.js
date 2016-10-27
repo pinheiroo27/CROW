@@ -18,6 +18,7 @@ $(function(){
         $.post("GenericEditServlet",parametros,
         function(data){
             $("#mensagem").html(data);
+            $("#modal-mensagem").modal("show");
         }); 
         });
     
